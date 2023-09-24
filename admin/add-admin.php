@@ -9,16 +9,8 @@ require('./includes/head.php')
                 <h3 class="mb-3">Add Admin</h3>
                 <div class="card">
                     <div class="card-body p-5">
-                      <?php if(isset($_SESSION['errors'])):
-                          foreach($_SESSION['errors'] as $error):
-                              ?>
-                            <div class="alert alert-danger">
-                              <?= $error?>
-                            </div>
-                      <?php
-                          endforeach;
-                          unset($_SESSION['errors']);
-                      endif;?>
+                        <!-- alerts -->
+                        <?php require('./includes/alerts.php')?>
                         <form method="post" action="./handlers/createAdminHandler.php" enctype="multipart/form-data">
                             <div class="form-group">
                               <label>Name</label>

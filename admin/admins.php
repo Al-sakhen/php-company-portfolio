@@ -11,13 +11,8 @@ $admins = mysqli_fetch_all($query, MYSQLI_ASSOC);
         <div class="row">
 
             <div class="col-md-10 offset-md-1">
-                <?php if(isset($_SESSION['success'])):?>
-                <div class="alert alert-success">
-                    <?= $_SESSION['success']?>
-                </div>
-                <?php
-                unset($_SESSION['success']);
-                endif;?>
+                <!-- alerts -->
+                <?php require('./includes/alerts.php')?>
                 
 
                 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -58,10 +53,11 @@ $admins = mysqli_fetch_all($query, MYSQLI_ASSOC);
                           <?= $admin['created_at']?>
                         </td>
                         <td>
-                            <a class="btn btn-sm btn-info" href="#">
+                            <a class="btn btn-sm btn-info" href="./edit-admin.php?id=<?= $admin['id'] ?>">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a class="btn btn-sm btn-danger" href="#">
+                            <!-- query params  ==> 'route?key=value'    -->
+                            <a class="btn btn-sm btn-danger" href="./handlers/deleteAdminHandler.php?id=<?= $admin['id'] ?>">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
