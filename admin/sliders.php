@@ -2,9 +2,9 @@
 require('./includes/head.php');
 
 $connection = mysqli_connect('localhost', 'root', '', 'company_portfolio');
-$sql = "SELECT * FROM admins";
+$sql = "SELECT * FROM sliders";
 $query = mysqli_query($connection, $sql);
-$admins = mysqli_fetch_all($query, MYSQLI_ASSOC);
+$sliders = mysqli_fetch_all($query, MYSQLI_ASSOC);
 ?>
     <div class="container-fluid py-5">
         <div class="row">
@@ -15,48 +15,52 @@ $admins = mysqli_fetch_all($query, MYSQLI_ASSOC);
                 
 
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h3>All Admins</h3>
-                <a href="./add-admin.php" class="btn btn-secondary">Add Admin</a>
+                    <h3>All Sliders</h3>
+                <a href="./add-slider.php" class="btn btn-secondary">Add Slider</a>
 
                 </div>
                 <table class="table table-hover">
                     <thead>
                       <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Email</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Body</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Created At</th>
                             <th scope="col">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <?php if(count($admins) > 0) :?>
+                      <?php if(count($sliders) > 0) :?>
                       <?php
-                      foreach($admins as $admin):
+                      foreach($sliders as $slider):
                           ?>
                       <tr>
                         <th scope="row">
-                          <?= $admin['id']?>
+                          <?= $slider['id']?>
                         </th>
                         <td>
-                          <?= $admin['name']?>
+                          <?= $slider['title']?>
                         </td>
                         <td>
-                          <?= $admin['email']?>
+                          <?= $slider['body']?>
                         </td>
                         <td>
-                          <?= $admin['is_active']?>
+                          <?= $slider['status']?>
                         </td>
                         <td>
-                          <?= $admin['created_at']?>
+                          <img src="./uploads/sliders/<?= $slider['image']?>" alt="" style="width: 150px;" >
                         </td>
                         <td>
-                            <a class="btn btn-sm btn-info" href="./edit-admin.php?id=<?= $admin['id'] ?>">
+                          <?= $slider['created_at']?>
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-info" href="./edit-slider.php?id=<?= $slider['id'] ?>">
                                 <i class="fas fa-edit"></i>
                             </a>
                             <!-- query params  ==> 'route?key=value'    -->
-                            <a class="btn btn-sm btn-danger" href="./handlers/deleteAdminHandler.php?id=<?= $admin['id'] ?>">
+                            <a class="btn btn-sm btn-danger" href="./handlers/deleteSlideHandler.php?id=<?= $slider['id'] ?>">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
@@ -66,7 +70,7 @@ $admins = mysqli_fetch_all($query, MYSQLI_ASSOC);
                           ?>
                     <?php else: ?>
                       <tr>
-                        <td colspan="6" class="text-center">No admins found</td>
+                        <td colspan="7" class="text-center">No sliders found</td>
                       </tr>
                     <?php endif; ?>
                     </tbody>

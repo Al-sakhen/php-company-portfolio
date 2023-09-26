@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    if(isset($_SESSION['admin'])){
+        header("location: ./index.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,19 +19,21 @@
 
     <div class="container py-5">
         <div class="row">
-
             <div class="col-md-6 offset-md-3">
                 <h3 class="mb-3">Login</h3>
                 <div class="card">
                     <div class="card-body p-5">
-                        <form>
+                        <form action="handlers/login.php" method="post">
+                            <?php
+                                require('./includes/alerts.php');
+                            ?>
                             <div class="form-group">
                               <label>Email</label>
-                              <input type="email" class="form-control">
+                              <input type="email" name="email" class="form-control">
                             </div>
                             <div class="form-group">
                               <label>Password</label>
-                              <input type="password" class="form-control">
+                              <input type="password" name="password" class="form-control">
                             </div>
                             <div class="text-center mt-5">
                                 <button type="submit" class="btn btn-primary">Login</button>
