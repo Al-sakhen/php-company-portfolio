@@ -1,3 +1,7 @@
+<?php
+
+  session_start();
+?>
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
@@ -14,15 +18,6 @@
               <li><a href="about.php">About Us</a></li>
               <li><a href="team.php">Team</a></li>
               <li><a href="testimonials.php">Testimonials</a></li>
-              <li class="drop-down"><a href="#">Deep Drop Down</a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
             </ul>
           </li>
 
@@ -31,6 +26,19 @@
           <li><a href="pricing.php">Pricing</a></li>
           <li><a href="blog.php">Blog</a></li>
           <li><a href="contact.php">Contact</a></li>
+          <?php
+          
+            if(isset($_SESSION['user_id'])):
+          ?>
+          <li><a href="handlers/logout.php">Logout</a></li>
+          <?php
+            else:
+          ?>
+          <li><a href="login.php">Login</a></li>
+          <li><a href="register.php">Register</a></li>
+          <?php
+            endif;
+          ?>
 
         </ul>
       </nav><!-- .nav-menu -->
